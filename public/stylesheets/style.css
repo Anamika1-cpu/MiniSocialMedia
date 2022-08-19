@@ -1,0 +1,43 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+html,body{
+  width:100%;
+  height:100%;
+}
+h1{
+  font-family: "Gilroy";
+  font-size: 40px;
+}
+.form-control{
+  width:50%;
+}
+#photu{
+  position: relative;
+  width:120px;
+  height: 120px;
+  background-color: red;
+  margin-bottom: 10px;
+  border: 4px solid rgba(255, 255, 255, 0.848);
+}
+#photu img{
+  width:100%;
+  height: 100%;
+  object-fit: cover;
+}
+#overlay{
+  top:-3%;
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  left:-3%;
+}
+#overlay:hover{
+  background-color:rgba(0, 0, 0, 0.492);
+  cursor: pointer;
+}
+#form{
+  display: none;
+}

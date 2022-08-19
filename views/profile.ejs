@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+<body>
+    <form  id="form" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" id="one">
+    </form>
+    <div class="container mt-3">
+        <div id="photu">
+            <img src=<%=`./images/uploads/${data.profile}` %>  alt="">
+            <div id="overlay">
+
+            </div>
+        </div>
+        <h1>Hii, <%=data.username%></h1>
+    <a href="/read">read all</a>
+    <a href="/read/<%=data.username%>">read</a>
+    <a href="/edit/<%=data.id%>">Edit</a>
+    <a href="/delete/<%=data._id%>">delete</a>
+
+    <form method="post" action="/newpost">
+        <h2 class="mt-5">New Post</h2>
+        <div class="form-floating">
+           <textarea name="newpost" class="form-control mb-4" placeholder="Create a new post" id="floatingTextarea2" style="height: 100px"></textarea>
+           <label for="floatingTextarea2">New post</label>
+           <button type="submit" class="btn btn-primary mb-3">Post it!</button>
+         </div>
+    </form>
+    <h1>posts</h1>
+    <h3>
+        <%data.posts.forEach(element => {%>
+            <h4><%=element.post%></h4>
+            <a href="/like/<%=element._id%>"><%=element.likes.length%> like</a>
+            <form action="/comment/<%=element._id%>" method="post">
+                <div class="form-floating">
+                    <textarea class="form-control my-3" name="comment"  placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">Comments</label> 
+                </div>
+                <button type="submit" class="btn btn-primary">Comment</button>
+                
+            </form> 
+            
+
+            <%element.comments.forEach(a =>{%>
+                <div class="card p-3 mt-2">
+                <h6><%=a.comment%><br></h6>
+                <h6><%=a.username%><br></h6>
+            </div>
+            <%})%> 
+            
+           
+            
+        <%})%>
+    </h3>
+    <form action="/logout">
+        <button type="logout" class="btn btn-success mt-2">Logout</button></button>
+    </form>
+    
+    </div>
+</body> 
+<script>
+
+    document.querySelector('#overlay').addEventListener('click', function(){
+        document.querySelector('#one').click();
+    })
+    document.querySelector('#one').addEventListener('change', function(){
+        document.querySelector('#form').submit();
+    })
+
+</script>
+</html>
